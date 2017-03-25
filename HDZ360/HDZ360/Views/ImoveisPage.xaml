@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HDZ360.Views.ImoveisPage"
+             xmlns:VM="clr-namespace:HDZ360.ViewModels"
+             Title="Imoveis">
+
+    <ContentPage.BindingContext>
+        <VM:ImoveisViewModel/>
+    </ContentPage.BindingContext>
+
+    <StackLayout Spacing="0">
+        <Button Text="Sincronizar" Command="{Binding GetImoveisCommand}"/>
+        <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
+        <ListView x:Name="LvImoveis" ItemsSource="{Binding Imoveis}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ImageCell Text="{Binding Name}"
+                               Detail="{Binding Price, StringFormat='{0:C} Reais'}"
+                               ImageSource="{Binding Image}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </StackLayout>
+</ContentPage>
